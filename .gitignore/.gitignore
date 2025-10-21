@@ -1,1 +1,19 @@
 .env
+*.env
+
+# Local Python stuff
+venv/
+__pycache__/
+*.pyc
+
+# Data / outputs
+outputs/
+data/
+*.sqlite
+*.db
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
