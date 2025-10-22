@@ -42,6 +42,7 @@ Create and activate a virtual environment:
     
 Install dependencies:
     pip install -r requirements.txt
+    
 Example requirements.txt:
 openai
 langchain
@@ -52,7 +53,10 @@ python-wordpress-xmlrpc
 pytrends
 tweepy
 4 Environment Variables
+
 Create a .env file in the project root with the following keys:
+
+
 OPENAI_API_KEY=your_openai_api_key
 COMPOSIO_API_KEY=your_composio_api_key
 TWITTER_API_KEY=your_twitter_api_key
@@ -64,6 +68,8 @@ WORDPRESS_USERNAME=your_username
 WORDPRESS_PASSWORD=your_password
 SLACK_TOKEN=your_slack_token
 SLACK_CHANNEL=#your-channel
+
+
 5 Project Structure
 •	ai-agent-project/
 •	├─ src/
@@ -77,31 +83,38 @@ SLACK_CHANNEL=#your-channel
 •	├─ .env                       # Environment variables
 •	├─ requirements.txt           # Python dependencies
 •	└─ README.md                  # Project documentation
+
 6 Usage
+
 Run the AI Content Repurposer:
     python src/main.py
 •	- Enter the topic you want to repurpose.
 •	- Enter platforms (LinkedIn, Twitter, Blog) or leave default.
 •	- Generates plan, summary, rewrites, and saves output in outputs/final_output.txt
+
 Run Full Workflow with Integrations:
     python src/ai_member2_workflow.py
 •	- Fetch trending topics via Google Trends.
 •	- Generate content for each topic.
 •	- Publish to Twitter, WordPress, and Slack automatically.
+
 7 Workflow
 •	Content Planning – OpenAI generates a 3-step content plan.
 •	Content Summarization – Composio condenses text.
 •	Content Rewriting – Composio adapts text for selected platforms.
 •	Publishing & Notifications – Posts to WordPress, tweets, and sends Slack alerts.
+
 8 Testing Composio Integration
 •	python test_composio.py
 •	- Checks if Composio API key is loaded.
 •	- Lists available Composio tools (summarize, rewrite).
+
 9 Troubleshooting
 •	ModuleNotFoundError: Install missing package with pip install <package>.
 •	API Key Not Found: Ensure .env contains valid keys.
 •	Slack Posting Fails: Verify SLACK_TOKEN and SLACK_CHANNEL.
 •	Google Trends TooManyRequestsError: Script retries with backoff; increase wait times if needed.
+
 10 Author & License
 •	Author: Ashwini SR(TEAM LEAD)
 •	                R Sai Deepika(TEAM MEMBER)
