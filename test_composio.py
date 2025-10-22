@@ -1,40 +1,36 @@
+# test_composio.py
 import os
-from composio.client import Client
 from dotenv import load_dotenv
+from composio import client  # lowercase, latest SDK
 
+# ==========================
+# 1️⃣ Load environment variables
+# ==========================
 load_dotenv()
+COMPOSIO_TOKEN = os.getenv("COMPOSIO_TOKEN")
 
+if not COMPOSIO_TOKEN:
+    raise ValueError("COMPOSIO_TOKEN not set in your .env file!")
+
+# ==========================
+# 2️⃣ Initialize Composio client
+# ==========================
+cli = client(COMPOSIO_TOKEN)  # positional argument
+
+# ==========================
+# 3️⃣ Test a simple API call
+# ==========================
 def main():
     print("🔧 Initializing Composio Integration Test...")
 
-    composio_key = os.getenv("COMPOSIO_API_KEY")
-    if not composio_key:
-        print("❌ Missing COMPOSIO_API_KEY in your .env file!")
+    # Example: fetch available tools (adjust based on SDK version)
+    try:
+        tools = cli.list_tools()  # method name may vary: list_tools() or get_tools()
+    except Exception as e:
+        print("❌ Error fetching tools:", e)
         return
 
-    client = Client(api_key=composio_key)
-    print("✅ Connected to Composio API.")
-
-    # Simulate a workflow test
-    workflow_input = {"topic": "AI in Marketing", "platforms": ["LinkedIn", "Twitter"]}
-
-    try:
-        response = client.run_workflow(
-            workflow_name="content_repurpose_test",
-            input_data=workflow_input
-        )
-        print("✅ Workflow executed successfully.")
-    except Exception as e:
-        response = None
-        print(f"❌ Workflow execution failed: {e}")
-
-    # Save result
-    os.makedirs("outputs", exist_ok=True)
-    with open("outputs/composio_result.txt", "w", encoding="utf-8") as f:
-        f.write("🎯 Composio Integration Test Result\n")
-        f.write(f"Response: {response}\n")
-
-    print("📝 Output saved to outputs/composio_result.txt")
-
-if __name__ == "__main__":
-    main()
+    print("✅ Tools fetched successfully:")
+    for t in tools:
+        # Depending on SDK, t could be a dict or object
+        name = t.get('name') if isinstance(t, dict) else get
