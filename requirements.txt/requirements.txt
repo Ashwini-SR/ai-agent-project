@@ -2,3 +2,8 @@ openai
 langchain
 python-dotenv
 composio
+slack_sdk
+python-wordpress-xmlrpc
+pytrends
+tweepy
+
